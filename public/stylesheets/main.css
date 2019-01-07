@@ -29,3 +29,8 @@
 #delete_comment{
   display: inline;
 }
+
+#index-img{
+  height: 150px;
+  width: 275px;
+}

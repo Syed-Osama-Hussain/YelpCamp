@@ -3,7 +3,7 @@
 <div class="container">
   <header class="jumbotron">
     <div class="container">
-       <h1>Welcome to YelpCamp!</h1>
+       <h1><i class="fas fa-campground"></i>Welcome to YelpCamp!</h1>
        <p>View our hand-picked Campgrounds from all over the world</p>
        <p>
           <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground</a>
@@ -14,8 +14,8 @@
  <div class="row text-center" style="display:flex; flex-wrap: wrap;">
   <% campgrounds.forEach(function(campground){ %>
     <div class="col-md-3 col-sm-6">
-          <img class="img-thumbnail" src="<%= campground.image %>">
-        <div class="caption">
+          <img id="index-img" class="img-thumbnail" src="<%= campground.image %>">
+        <div class="figure">
           <h4> <%= campground.name %> </h4> 
         </div>
         <p>
