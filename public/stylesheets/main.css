@@ -1,0 +1,31 @@
+.img-thumbnail img{
+  width: 100%;
+}
+
+.img-thumbnail {
+  padding: 0;
+}
+
+.img-thumbnail .caption-full{
+  padding: 9px;
+}
+
+.card .row{
+  padding: 0 9px;
+}
+
+.card{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  background-color: rgb(245,245,245);
+}
+
+
+#deleteForm{
+  display: inline;
+}
+
+#delete_comment{
+  display: inline;
+}

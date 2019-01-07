@@ -5,7 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <title>YelpCamp</title>
 </head>
 <body>
+  <nav style="margin-bottom: 20px;" class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+    <a class="navbar-brand" href="/">YelpCamp</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav  navbar-right ml-auto">
+      <%  if(!currUser){  %>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Sign Up</a>
+        </li>
+     <% }else{ %>
+      <li class="nav-item">
+          <a class="nav-link" href="/">Signed In As <%= currUser.username %></a>
+      </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+     <% } %>
+      </ul>
+    </div>
+    </div>
+  </nav>
+
+<div class="container"> 
   
+  <% if(error && error.length >0){ %>
+  <div class="alert alert-danger" role="alert">
+    <%=error%>
+  </div>
+   <% } %>
+
+   <% if(success && success.length >0){ %>
+  <div class="alert alert-success" role="alert">
+    <%=success%>
+  </div>
+   <% } %>
+</div>
