@@ -10,15 +10,15 @@
   padding: 9px;
 }
 
-.card .row{
+.well .row{
   padding: 0 9px;
 }
 
-.card{
+.well{
   margin-top: 15px;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  background-color: rgb(245,245,245);
+  
 }
 
 
