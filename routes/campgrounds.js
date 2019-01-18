@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Campground = require("../models/campground");
 var middleware = require("../middleware");
+var moment = require("moment");
 
 
 router.get("/",function(req,res){ 
@@ -27,7 +28,8 @@ router.post("/",middleware.isLoggedIn,function(req,res){
       id: req.user._id,
       username: req.user.username
     }
-    var newCampground = {name: name, image:image, description:desc, author: author};
+    var cost = req.body.cost;
+    var newCampground = {name: name, image:image, description:desc, author: author,cost: cost};
     Campground.create(newCampground,function(err,newCamp){
         if(err)
         {
@@ -55,7 +57,7 @@ router.get("/:id",function(req,res){
         console.log(err);
       }else
       {
-        res.render("campgrounds/show",{campground: FoundCamp});
+        res.render("campgrounds/show",{campground: FoundCamp,moment: moment});
       }
     });
   });

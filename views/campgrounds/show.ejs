@@ -7,14 +7,18 @@
             <li class= "list-group-item active">Info 1</li>
             <li class= "list-group-item">Info 2</li>
             <li class= "list-group-item">Info 3</li>
-          </div>   
+          </div>
+          
+          <div id="map">
+
+          </div>
         </div>
 
         <div class="col-md-9">
           <div class="img-thumbnail">
               <img class="img-responsive" src ="<%= campground.image %>">
           <div class="caption-full">
-            <h4 class="float-right">$9.00/night</h4>
+            <h4 class="pull-right">$<%= campground.cost%>/night</h4>
             <h4><a href="#"><%=campground.name%></a></h4>
             <p><%= campground.description%></p>
             <p>
@@ -22,7 +26,7 @@
              <em> Submitted by <%= campground.author.username%> </em>
             
             </p>
-            <% if(currUser && campground.author.id.equals(currUser._id)){ %>
+            <% if(currUser){ %>
              <a class="btn btn-info" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
 
              <form id="deleteForm" method="POST" action="/campgrounds/<%=campground._id%>?_method=DELETE">
@@ -40,17 +44,68 @@
              <% campground.comments.forEach(function(comment){ %>
              <div class="row">
                <div class="col-md-12">
+                 <div class="text-center">
+                         <div class="rating">
+                              <input id="star5" name="star" type="radio" value="5" class="radio-btn hide"/>
+                              <label
+                              <% if(comment.rating > 4) { %>
+
+                               id="rated"
+                              <% } %>
+                                for="star5">☆</label>
+
+                              <input id="star4" name="star" type="radio" value="4" class="radio-btn hide"/>
+                              <label
+                              <% if(comment.rating > 3) { %>
+
+                                id="rated"
+                               <% } %>
+                              for="star4">☆</label>
+
+                              <input id="star3" name="star" type="radio" value="3" class="radio-btn hide"/>
+                              <label
+                              <% if(comment.rating > 2) { %>
+
+                                id="rated"
+                               <% } %>
+                              for="star3">☆</label>
+
+                              <input id="star2" name="star" type="radio" value="2" class="radio-btn hide"/>
+                              <label
+                              <% if(comment.rating > 1) { %>
+
+                                id="rated"
+                               <% } %>
+
+                              for="star2">☆</label>
+
+                              <input id="star1" name="star" type="radio" value="1" class="radio-btn hide"/>
+                              <label
+                              <% if(comment.rating > 0) { %>
+
+                                id="rated"
+                               <% } %>
+                                for="star1">☆</label>
+
+                              <div class="clear"></div>
+                          </div>
+                  </div>
                  <strong> <%= comment.author.username %> </strong>
-                  <span class="float-right">10 days ago</span>
+                  <span class="pull-right">
+                    
+                    <%= moment(comment.time).fromNow() %>
+                  </span>
                   <p><%=comment.text%></p>
+
         
-        <% if(currUser && campground.author.id.equals(currUser._id)){ %>
-                  
-              <a class="btn btn-sm btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
+        <% if(currUser){ %>
+         <div class="Comment-buttons">          
+              <a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
 
                   <form id="delete_comment" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                     <button class="btn btn-sm btn-danger">Delete</button>
+                     <button class="btn btn-xs btn-danger">Delete</button>
                   </form>
+                </div>
                <% } %>
                </div>
              </div>
@@ -60,5 +115,18 @@
     </div>
   </div>
 
+  <script>
+      var loc = "<%- campground.name %>"; 
+  </script>
+
+
+<script type="text/javascript" src="/scripts/main.js">
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzvE0C86LUbHBagPNyK3JbMYXQl-SBPkE&callback=initMap">
+</script>
+
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
 <% include ../partials/footer %>

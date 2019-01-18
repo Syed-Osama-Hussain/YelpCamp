@@ -3,6 +3,7 @@ var router = express.Router({mergeParams: true});
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
+var moment = require("moment");
 
 
 router.get("/new",middleware.isLoggedIn,function(req,res){
@@ -27,6 +28,7 @@ router.post("/",middleware.isLoggedIn,function(req,res){
             }else{
               comment.author.id = req.user._id;
               comment.author.username = req.user.username;
+              comment.time = moment();
               comment.save();
               camp.comments.push(comment);
               camp.save();
